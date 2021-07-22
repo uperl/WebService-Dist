@@ -2,6 +2,21 @@
 
 Find if there is a dist for that Perl module
 
+# SYNOPSIS
+
+```perl
+use WebService::Dist;
+
+if(foreign_package_exists 'deb', 'FFI-Platypus')
+{
+  print "there is a debian package for FFI-Platypus';
+}
+```
+
+# DESCRIPTION
+
+This modules just provides some functions for determining if a vendor provides a particular CPAN dist as a package.
+
 # FUNCTIONS
 
 ## foreign\_package\_name
@@ -10,7 +25,7 @@ Find if there is a dist for that Perl module
 my $name = foreign_package_name $vendor, $name;
 ```
 
-Given a valid vendor (`deb`) and a dist or module name (example: [FFI::Platypus](https://metacpan.org/pod/FFI::Platypus) or `FFI-Platypus`), return
+Given a valid vendor (`deb`, `rpm`, `freebsd` or `openbsd`) and a dist or module name (example: [FFI::Platypus](https://metacpan.org/pod/FFI::Platypus) or `FFI-Platypus`), return
 the normal package name for that vendor (example: `libffi-platypus-perl`).
 
 ## foreign\_package\_exists
