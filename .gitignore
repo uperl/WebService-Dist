@@ -2,4 +2,7 @@ WebService-Dist-*
 /.build/
 *.swp
 
-
+/WebService-Dist-*
+/.build
+*.old
+*.orig
