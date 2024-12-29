@@ -91,8 +91,10 @@ sub foreign_package_exists ($vendor, $name)
   }
   elsif($vendor eq 'openbsd')
   {
-    $url = "https://openports.se/devel/$package_name";
+    $url = "https://openports.pl/path/devel/$package_name";
     my $res = $ua->get($url);
+    # lol this server returns a 404 as a 200
+    return '' if $res->code == 200 && $res->decoded_content =~ /Error 404|Not Found/;
     die $res->status_line unless $res->is_success;
     return !scalar $res->decoded_content =~ /The package you requested does not exist/
   }
@@ -102,7 +104,7 @@ sub foreign_package_exists ($vendor, $name)
   }
 
   my $res = $ua->head($url);
-  return $res->is_success;
+  return !!$res->is_success;
 }
 
 1;
